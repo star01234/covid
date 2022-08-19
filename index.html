@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+            integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Thasadith:wght@700&display=swap');
+
+        * {
+            font-family: 'Thasadith', sans-serif;
+            font-size: 15px;
+        }
+
+        body {
+            background-image: linear-gradient(to left bottom, #f2ebd7, #f4e8c6, #f6e5b6, #f8e2a5, #fadf94);
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        form {
+            width: auto;
+            margin: auto;
+            padding: 20px;
+            color: black;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            min-width: 300px;
+        }
+
+        input[type="radio"]~label {
+            text-align: left;
+        }
+
+        img {
+            display: block;
+            max-width: 40%;
+            height: auto;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        label {
+            display: inline-block;
+
+        }
+
+        .rounded {
+            border-radius: 5.25rem!important;
+        }
+        
+        .btn {
+            --bs-btn-border-radius: 5.25rem;
+        }
+
+    </style>
+</head>
+
+<body class="bg-info">
+    <div class="container mt-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-8 col-md-6 col-lg-6 bg-white rounded shadow">
+                <form id="myForm" onsubmit="submitForm(this)">
+                    <div><img src="http://pws.npru.ac.th/udsanee/data/images/LogoSE-Corrected.png" alt="" width="250">
+                    </div>
+                    <div class="text-center mt-3 mb-2">
+                        <h1>ฟอร์มแจ้งการติดเชื้อไวรัสโควิด</h1>
+                    </div>
+
+                    <div class="form-row mt-4">
+                        <label>คำนำหน้าชื่อ* : </label>
+                        <input type="radio" id="mr" value="นาย" name="title" required=""> <label> นาย</label>
+                        <input type="radio" id="ms" value="นางสาว" name="title" required=""> <label> นางสาว</label>
+                        <input type="radio" id="mrs" value="นาง" name="title" required=""> <label> นาง</label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>ชื่อจริง* : </label>
+                        <input type="text" id="fname" name="fname" required="">
+                    </div>
+
+                    <div class="form-row">
+                        <label>นามสกุล* : </label>
+                        <input type="text" id="lname" name="lname" required="">
+                    </div>
+
+
+                    <div class="form-row">
+                        <label>ขอลาหยุดถึงวันที่* : </label>
+                        <input type="date" id="cd" name="cd" required="">
+                    </div>
+
+                    <div class="form-row">
+                        <i class="fa-solid fa-file-arrow-up"></i>
+                        <label style="width:fit-content">
+                             อัปโหลดหลักฐาน (ภาพ ATK,ใบรับรองแพทย์หรืออื่นๆ)*</label>
+                        <input type="file" name="myFile" id="myFile" required="">
+                    </div>
+
+                    <div class="form-row">
+                        <label style="width:fit-content">รายละเอียดอื่นที่ต้องการแจ้ง (ถ้ามี) : </label>
+                        <textarea class="form-control" name="wishMessage" id="wishMessage" row="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <input type="submit" class="btn btn-primary" id="sb">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitForm(data) {
+            event.preventDefault()
+            google.script.run.withSuccessHandler((output) => {
+                console.log('คุณได้ส่งฟอร์มแจ้งการติดเชื้อไวรัสโควิดเรียบร้อยแล้วค่ะ')
+                document.querySelector('#fillForm').reset()
+                Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'คุณได้ส่งฟอร์มแจ้งการติดเชื้อไวรัสโควิดเรียบร้อยแล้วค่ะ',
+                showConfirmButton: false,
+                timer: 1500
+              })
+
+
+            }).saveData(data)
+        }
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+
+
+</html>
